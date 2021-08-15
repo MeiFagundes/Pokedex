@@ -12,7 +12,11 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Pokedex',
       theme: ThemeData(
+        fontFamily: 'OpenSans',
         primarySwatch: Colors.red,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
+        buttonColor: Colors.pinkAccent,
+        iconTheme: IconThemeData(color: Colors.red, size: 25),
       ),
       home: HomeView(),
     );

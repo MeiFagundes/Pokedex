@@ -9,7 +9,10 @@ class PokemonCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      elevation: 2,
+      elevation: 3,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(15),
+      ),
       child: Padding(
         padding:
             const EdgeInsets.only(top: 20, bottom: 10, left: 30, right: 30),
