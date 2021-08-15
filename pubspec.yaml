@@ -1,5 +1,5 @@
 name: pokedex
-description: A new Flutter project.
+description: A simple Pokedex built with Flutter.
 version: 1.0.0+1
 
 environment:
