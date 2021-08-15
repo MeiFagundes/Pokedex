@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pokedex/models/pokemon_model.dart';
 import 'package:pokedex/repositories/pokemon_repository.dart';
+import 'package:pokedex/utils/url_util.dart';
 import 'package:pokedex/views/home/pokemons/pokemon_cart.dart';
 import 'package:pokedex/views/shared/custom_icons_icons.dart';
 import 'package:pokedex/views/shared/text_styles.dart';
@@ -24,6 +25,17 @@ class HomeView extends StatelessWidget {
             ),
           ],
         ),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.home),
+            tooltip: 'meifagundes.com',
+            onPressed: () {
+              UrlUtil.openURI(UrlUtil.urlHome);
+              ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(content: Text('This is a snackbar')));
+            },
+          ),
+        ],
       ),
       body: FutureBuilder<List<PokemonModel>>(
           future: PokemonRepository.getPokemonList(0, 50),
