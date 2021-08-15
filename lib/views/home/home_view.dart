@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pokedex/models/pokemon_model.dart';
 import 'package:pokedex/repositories/pokemon_repository.dart';
+import 'package:pokedex/views/home/pokemons/pokemon_cart.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({Key key}) : super(key: key);
@@ -12,13 +13,13 @@ class HomeView extends StatelessWidget {
         title: Text('Pokedex'),
       ),
       body: FutureBuilder<List<PokemonModel>>(
-          future: PokemonRepository.getPokemonList(0),
+          future: PokemonRepository.getPokemonList(0, 20),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.done &&
                 snapshot.hasData) {
-              return Column(
+              return ListView(
                 children: [
-                  for (final pokemon in snapshot.data) Text(pokemon.name)
+                  for (final pokemon in snapshot.data) PokemonCard(pokemon)
                 ],
               );
             } else
