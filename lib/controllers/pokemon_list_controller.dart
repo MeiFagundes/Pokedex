@@ -1,9 +1,12 @@
+import 'dart:math';
+
 import 'package:get/state_manager.dart';
 import 'package:pokedex/models/pokemon_model.dart';
 import 'package:pokedex/repositories/pokemon_repository.dart';
 
 class PokemonListController extends GetxController {
-  static const kLimit = 20;
+  static const kLoadingChunkSize = 20;
+  static const kPokemonHardLimit = 898;
 
   final PokemonRepository _repository;
 
@@ -17,12 +20,16 @@ class PokemonListController extends GetxController {
       _pokemonList.isNotEmpty ? _pokemonList : loadPokemonList();
 
   Future<List<PokemonModel>> loadPokemonList() async {
-    loading.value = true;
+    if (_pokemonList.length < kPokemonHardLimit) {
+      loading.value = true;
     final loadedPokemon = await _repository.getPokemonList(
-        _pokemonList.isNotEmpty ? _pokemonList.length : 0, kLimit)
+                  _pokemonList.isNotEmpty ? _pokemonList.length : 0,
+              min(kLoadingChunkSize,
+                  max(1, kPokemonHardLimit - _pokemonList.length)))
         .whenComplete(() => loading.value = false);
 
     _pokemonList.addAll(loadedPokemon);
+    }
     return _pokemonList;
   }
 }
