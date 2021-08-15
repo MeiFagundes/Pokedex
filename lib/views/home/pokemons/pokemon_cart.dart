@@ -15,8 +15,9 @@ class PokemonCard extends StatelessWidget {
       ),
       child: Padding(
         padding:
-            const EdgeInsets.only(top: 20, bottom: 10, left: 30, right: 30),
+            const EdgeInsets.only(top: 18, bottom: 10, left: 20, right: 20),
         child: Container(
+          width: 310,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -38,6 +39,7 @@ class PokemonCard extends StatelessWidget {
               ),
               Row(
                 mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Column(
                     children: [
@@ -49,21 +51,52 @@ class PokemonCard extends StatelessWidget {
                     ],
                   ),
                   Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Image.asset(
-                        'assets/images/types/${pokemon.types.first.type.name}.png',
-                        scale: 8,
-                        filterQuality: FilterQuality.medium,
+                      Wrap(
+                        direction: Axis.vertical,
+                        spacing: 5,
+                        children: [
+                          for (final type in pokemon.types)
+                            Image.asset(
+                              'assets/images/types/${type.type.name}.png',
+                              scale: 8,
+                              filterQuality: FilterQuality.medium,
+                            ),
+                        ],
                       ),
-                      if (pokemon.types.length > 1)
-                        Padding(
-                          padding: const EdgeInsets.only(top: 5),
-                          child: Image.asset(
-                            'assets/images/types/${pokemon.types[1].type.name}.png',
-                            scale: 8,
-                            filterQuality: FilterQuality.medium,
-                          ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 10),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text.rich(
+                              TextSpan(
+                                text: "Height: ",
+                                children: <TextSpan>[
+                                  TextSpan(
+                                    text: "${pokemon.height / 10} m",
+                                    style: TextStyles.pokemonInfoValue,
+                                  ),
+                                ],
+                                style: TextStyles.pokemonInfoTitle,
+                              ),
+                            ),
+                            Text.rich(
+                              TextSpan(
+                                text: "Weight: ",
+                                children: <TextSpan>[
+                                  TextSpan(
+                                    text: "${pokemon.weight / 10} kg",
+                                    style: TextStyles.pokemonInfoValue,
+                                  ),
+                                ],
+                                style: TextStyles.pokemonInfoTitle,
+                              ),
+                            ),
+                          ],
                         ),
+                      ),
                     ],
                   ),
                 ],

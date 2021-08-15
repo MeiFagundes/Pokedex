@@ -38,7 +38,7 @@ class HomeView extends StatelessWidget {
         ],
       ),
       body: FutureBuilder<List<PokemonModel>>(
-          future: PokemonRepository.getPokemonList(0, 50),
+          future: PokemonRepository.getPokemonList(0, 20),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.done &&
                 snapshot.hasData) {

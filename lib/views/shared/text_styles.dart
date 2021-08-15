@@ -21,6 +21,19 @@ class TextStyles {
     color: Colors.grey,
   );
 
+  static final pokemonInfoTitle = TextStyle(
+    fontSize: 15,
+    fontWeight: FontWeight.w600,
+    color: Colors.grey[800],
+    letterSpacing: 0.7,
+  );
+
+  static final pokemonInfoValue = TextStyle(
+    fontSize: 14,
+    fontWeight: FontWeight.w600,
+    color: Colors.grey[600],
+  );
+
   static final meifagundesdotcomAction = TextStyle(
     fontSize: 15,
     fontWeight: FontWeight.w700,
