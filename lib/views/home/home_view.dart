@@ -13,14 +13,25 @@ class HomeView extends StatelessWidget {
         title: Text('Pokedex'),
       ),
       body: FutureBuilder<List<PokemonModel>>(
-          future: PokemonRepository.getPokemonList(0, 20),
+          future: PokemonRepository.getPokemonList(700, 50),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.done &&
                 snapshot.hasData) {
-              return ListView(
-                children: [
-                  for (final pokemon in snapshot.data) PokemonCard(pokemon)
-                ],
+              return SingleChildScrollView(
+                child: Center(
+                  child: Padding(
+                    padding: const EdgeInsets.all(30),
+                    child: Wrap(
+                      spacing: 20,
+                      runSpacing: 20,
+                      direction: Axis.horizontal,
+                      children: [
+                        for (final pokemon in snapshot.data)
+                          PokemonCard(pokemon)
+                      ],
+                    ),
+                  ),
+                ),
               );
             } else
               return Center(

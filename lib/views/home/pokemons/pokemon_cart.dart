@@ -9,17 +9,64 @@ class PokemonCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      child: Container(
-        child: Row(
-          children: [
-            Column(
-              children: [
-                Text(pokemon.name[0].toUpperCase() + pokemon.name.substring(1),
-                    style: TextStyles.pokemonName),
-                Image.network(pokemon.sprites.frontDefault),
-              ],
-            )
-          ],
+      elevation: 2,
+      child: Padding(
+        padding:
+            const EdgeInsets.only(top: 20, bottom: 10, left: 30, right: 30),
+        child: Container(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(bottom: 10),
+                child: Text.rich(
+                  TextSpan(
+                    text:
+                        "${pokemon.name[0].toUpperCase()}${pokemon.name.substring(1)} ",
+                    children: <TextSpan>[
+                      TextSpan(
+                        text: "#${pokemon.id}",
+                        style: TextStyles.pokemonId,
+                      ),
+                    ],
+                    style: TextStyles.pokemonName,
+                  ),
+                ),
+              ),
+              Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Column(
+                    children: [
+                      Image.network(
+                        pokemon.sprites.frontDefault,
+                        scale: 0.5,
+                        filterQuality: FilterQuality.none,
+                      ),
+                    ],
+                  ),
+                  Column(
+                    children: [
+                      Image.asset(
+                        'assets/images/types/${pokemon.types.first.type.name}.png',
+                        scale: 8,
+                        filterQuality: FilterQuality.medium,
+                      ),
+                      if (pokemon.types.length > 1)
+                        Padding(
+                          padding: const EdgeInsets.only(top: 5),
+                          child: Image.asset(
+                            'assets/images/types/${pokemon.types[1].type.name}.png',
+                            scale: 8,
+                            filterQuality: FilterQuality.medium,
+                          ),
+                        ),
+                    ],
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );
