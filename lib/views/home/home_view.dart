@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:get/instance_manager.dart';
+import 'package:pokedex/controllers/pokemon_list_controller.dart';
 import 'package:pokedex/models/pokemon_model.dart';
-import 'package:pokedex/repositories/pokemon_repository.dart';
 import 'package:pokedex/utils/url_util.dart';
-import 'package:pokedex/views/home/pokemons/pokemon_cart.dart';
+import 'package:pokedex/views/home/pokemons/pokemon_card.dart';
 import 'package:pokedex/views/shared/custom_icons_icons.dart';
 import 'package:pokedex/views/shared/text_styles.dart';
 
 class HomeView extends StatelessWidget {
-  const HomeView({Key key}) : super(key: key);
+  HomeView({Key key}) : super(key: key);
+
+  final _pokemonListController = Get.find<PokemonListController>();
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +41,7 @@ class HomeView extends StatelessWidget {
         ],
       ),
       body: FutureBuilder<List<PokemonModel>>(
-          future: PokemonRepository.getPokemonList(0, 20),
+          future: _pokemonListController.pokemonList,
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.done &&
                 snapshot.hasData) {

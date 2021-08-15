@@ -7,15 +7,17 @@ import 'package:pokedex/models/pokemon_model.dart';
 class PokemonRepository {
   // final _httpClient = Client();
 
-  // PokemonRepository();
+  final String _apiPokemon;
 
-  static Future<List<PokemonModel>> getPokemonList(int offset,
+  PokemonRepository(this._apiPokemon);
+
+  Future<List<PokemonModel>> getPokemonList(int offset,
       [int limit = 20]) async {
     final httpClient = Client();
 
     try {
       final url =
-          'https://pokeapi.co/api/v2/pokemon?limit=$limit&offset=$offset';
+          '$_apiPokemon?limit=$limit&offset=$offset';
       final resposta = await httpClient.get(Uri.parse(url));
 
       final respostaJson =
@@ -36,11 +38,11 @@ class PokemonRepository {
     }
   }
 
-  static Future<PokemonModel> getPokemonDetailed(String pokemonId) async {
+   Future<PokemonModel> getPokemonDetailed(String pokemonId) async {
     final httpClient = Client();
 
     try {
-      final url = 'https://pokeapi.co/api/v2/pokemon/$pokemonId';
+      final url = '$_apiPokemon/$pokemonId';
       final resposta = await httpClient.get(Uri.parse(url));
 
       final respostaJson =
