@@ -20,7 +20,7 @@ class PokemonListController extends GetxController {
       _pokemonList.isNotEmpty ? _pokemonList : loadPokemonList();
 
   Future<List<PokemonModel>> loadPokemonList() async {
-    if (_pokemonList.length < kPokemonHardLimit) {
+    if (!loading.value && _pokemonList.length < kPokemonHardLimit) {
       loading.value = true;
     final loadedPokemon = await _repository.getPokemonList(
                   _pokemonList.isNotEmpty ? _pokemonList.length : 0,
