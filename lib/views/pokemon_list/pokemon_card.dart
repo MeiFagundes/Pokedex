@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/route_manager.dart';
 import 'package:pokedex/models/pokemon_model.dart';
 import 'package:pokedex/views/shared/text_styles.dart';
 
@@ -13,13 +14,19 @@ class PokemonCard extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(15),
       ),
-      child: LayoutBuilder(
-        builder: (BuildContext context, BoxConstraints constraints) {
-          if (constraints.maxWidth > 350)
-            return _wideLayout;
-          else
-            return _narrowLayout;
+      child: InkWell(
+        borderRadius: BorderRadius.circular(15),
+        onTap: () {
+          Get.toNamed("/pokemon?pokemon=${pokemon.name}");
         },
+        child: LayoutBuilder(
+          builder: (BuildContext context, BoxConstraints constraints) {
+            if (constraints.maxWidth > 350)
+              return _wideLayout;
+            else
+              return _narrowLayout;
+          },
+        ),
       ),
     );
   }
