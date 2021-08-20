@@ -9,12 +9,6 @@
             "request": "launch",
             "type": "dart",
             "program": "lib/main.dart",
-            "args": [
-                "-d",
-                "edge",
-                "--web-port=5000",
-                "--web-enable-expression-evaluation"
-            ]
         },
         {
             "name": "Flutter run CanvasKit",

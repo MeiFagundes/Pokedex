@@ -23,7 +23,7 @@ class PokemonListController extends GetxController {
     if (!loading.value && _pokemonList.length < kPokemonHardLimit) {
       loading.value = true;
     final loadedPokemon = await _repository.getPokemonList(
-                  _pokemonList.isNotEmpty ? _pokemonList.length : 0,
+                  _pokemonList.length,
               min(kLoadingChunkSize,
                   max(1, kPokemonHardLimit - _pokemonList.length)))
         .whenComplete(() => loading.value = false);
