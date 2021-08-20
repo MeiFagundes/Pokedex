@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pokedex/service_locator.dart';
-import 'package:pokedex/views/home/home_view.dart';
+import 'package:pokedex/views/pokemon_list/pokemon_list_view.dart';
 
 void main() {
   setupLocator();
@@ -8,7 +8,6 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -20,7 +19,7 @@ class MyApp extends StatelessWidget {
         buttonColor: Colors.pinkAccent,
         iconTheme: IconThemeData(color: Colors.red, size: 25),
       ),
-      home: HomeView(),
+      home: PokemonListView(),
     );
   }
 }
